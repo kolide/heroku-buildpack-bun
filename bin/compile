@@ -8,33 +8,15 @@ BUILD_DIR=${1:-.}
 CACHE_DIR=${2:-}
 ENV_DIR=${3:-}
 
-HEROKU_DIR=$BUILD_DIR/.heroku
-BIN_DIR=$HEROKU_DIR/bin
-
-# To enable the local source build cache path, copy the files and match the build path with the startup path.
-cp -rpT $BUILD_DIR $HOME
-cd $HOME
-
-if [ -f runtime.bun.txt ]
-then
-  INSTALL_VERSION_OPTION="-s bun-$(cat runtime.bun.txt)"
-elif [ -f runtime.txt ]
-then
-  INSTALL_VERSION_OPTION="-s bun-$(cat runtime.txt)"
-fi
-echo $INSTALL_VERSION_OPTION
-
 # install bun
-export BUN_INSTALL=$BUILD_DIR/.heroku
-export BUN_DIR=$BUILD_DIR/.heroku/cache
-curl -fsSL https://bun.sh/install | bash $INSTALL_VERSION_OPTION
+export BUN_INSTALL=$BUILD_DIR/.bun
+curl -fsSL https://bun.sh/install | bash
 
 # set environment variables
 PROFILE_PATH="$BUILD_DIR/.profile.d/bun.sh"
 mkdir -p $(dirname $PROFILE_PATH)
-echo 'export PATH="$HOME/.heroku/bin:$PATH"' >> $PROFILE_PATH
-echo 'export BUN_DIR="$HOME/.heroku/cache"' >> $PROFILE_PATH
+echo 'export PATH="$HOME/.bun/bin:$PATH"' >> $PROFILE_PATH
 
-export PATH="$HOME/.heroku/bin:$PATH"
+export PATH="$HOME/.bun/bin:$PATH"
 
 set +e
