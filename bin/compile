@@ -36,19 +36,3 @@ echo 'export PATH="$HOME/.heroku/bin:$PATH"' >> $PROFILE_PATH
 echo 'export BUN_DIR="$HOME/.heroku/cache"' >> $PROFILE_PATH
 
 set +e
-
-# download dependencies
-if [ -f Procfile ]
-then
-  SCRIPT_DIR=$(cd $(dirname $0); pwd)
-  source $SCRIPT_DIR/get_cache_command.sh
-  COMMAND=$(cat Procfile | grep -E '^(web|worker):')
-  if [ -n "$COMMAND" ]
-  then
-    CACHE_COMMAND=$(get_cache_command "$COMMAND")
-    if [ -n "$CACHE_COMMAND" ]
-    then
-      $BIN_DIR/$CACHE_COMMAND
-    fi
-  fi
-fi
