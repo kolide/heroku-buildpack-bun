@@ -16,6 +16,12 @@ curl -fsSL https://bun.sh/install | bash
 export PATH=$BUN_INSTALL/bin:$PATH
 PROFILE_PATH="$BUILD_DIR/.profile.d/bun.sh"
 mkdir -p $(dirname $PROFILE_PATH)
-echo 'export PATH="$HOME/.bun/bin:$PATH"' >> $PROFILE_PATH
+echo 'export PATH="$HOME/.bun/bin:$PATH"' >>$PROFILE_PATH
 
 set +e
+
+# Allow bun to update itself
+bun upgrade
+
+# Install dependencies
+bun install --frozen-lockfile
