@@ -10,7 +10,11 @@ ENV_DIR=${3:-}
 
 # install bun
 export BUN_INSTALL=$BUILD_DIR/.bun
-curl -fsSL https://bun.sh/install | bash
+
+# bun 1.0.5 seems to be broken
+# ISSUE: https://discord.com/channels/876711213126520882/1161662999258480651/1161662999258480651
+# SEE: https://bun.sh/docs/installation#installing
+curl -fsSL https://bun.sh/install | bash -s "bun-v1.0.4"
 
 # set environment variables
 export PATH=$BUN_INSTALL/bin:$PATH
