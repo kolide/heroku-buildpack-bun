@@ -29,6 +29,7 @@ if [ -f $ENV_DIR/BUN_VERSION ]; then
     VERSION="-s \"bun-v$PROVIDED_VERSION_NUMBER\""
     topic "Using bun v${PROVIDED_VERSION_NUMBER} (set by the env var 'BUN_VERSION')"
 else
+    VERSION=""
     topic "Defaulting to latest version of bun"
 fi
 indent "Version $VERSION"
