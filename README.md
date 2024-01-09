@@ -2,7 +2,7 @@
 
 Heroku buildpack for Bun.js
 
-You can optionally control the specific version by setting the BUN_VERSION environment-level variable to an explicit version e.g. 1.0.14
+You can optionally control the specific version by setting the `BUN_VERSION` environment-level variable to an explicit version e.g. 1.0.14
 
 Be aware that Heroku doesn't use a new enough version of the Linux kernel to support `io_uring`, which is needed for `Bun.write()`. Use `node:fs.writeFile()` instead.
 
