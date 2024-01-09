@@ -26,7 +26,7 @@ ENV_DIR=${3:-}
 # determine version to install
 if [ -f $ENV_DIR/BUN_VERSION ]; then
     PROVIDED_VERSION_NUMBER=$(cat $ENV_DIR/BUN_VERSION)
-    VERSION="-s \"bun-v$PROVIDED_VERSION_NUMBER\""
+    VERSION="-s bun-v$PROVIDED_VERSION_NUMBER"
     topic "Using bun v${PROVIDED_VERSION_NUMBER} (set by the env var 'BUN_VERSION')"
 else
     VERSION=""
